@@ -1,40 +1,13 @@
 package imageviewer;
 
-import imageviewer.model.Image;
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import imageviewer.persistence.ImageLoader;
+import imageviewer.persistence.files.FileImageLoader;
 
 public class Main {
 
     public static void main(String[] args) {
+        ImageLoader imageLoader = new FileImageLoader("images/obama.jpg");
         MainFrame mainFrame = new MainFrame();
-        mainFrame.getImageDisplay().display(image());
+        mainFrame.getImageDisplay().display(imageLoader.load());
     }
-
-    private static Image image() {
-        return new Image(){
-            @Override
-            public byte[] bitmap() {
-                try {
-                    FileInputStream is = new FileInputStream("images/obama.jpg");
-                    return read(is);
-                } catch (IOException ex) {
-                    return new byte[0];
-                }
-            }
-
-            private byte[] read(FileInputStream is) throws IOException {
-                byte[] buffer = new byte[4096];
-                ByteArrayOutputStream os = new ByteArrayOutputStream();
-                while(true){
-                    int length = is.read(buffer);
-                    if(length<0) break;
-                    os.write(buffer, 0, length);
-                }
-                return os.toByteArray()
-            }
-        };
-    }
-    
 }
