@@ -7,8 +7,6 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -41,7 +39,7 @@ public class SwingImageDisplay extends JPanel implements ImageDisplay {
                 try {
                     return ImageIO.read(new ByteArrayInputStream(image.bitmap()));
                 } catch (IOException ex) {
-                    Logger.getLogger(SwingImageDisplay.class.getName()).log(Level.SEVERE, null, ex);
+                    return null;
                 }
             }
 
