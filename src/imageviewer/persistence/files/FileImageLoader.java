@@ -37,6 +37,16 @@ public class FileImageLoader implements ImageLoader{
                 }
                 return os.toByteArray();
             }
+
+            @Override
+            public Image next() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public Image prev() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
         };
     }
     
